@@ -6,7 +6,8 @@ The project demonstrates a modern, scalable Flutter architecture, implementing k
 
 ## Video Demo
 
-*(A video demonstrating the application's features and functionality will be added here.)*
+https://github.com/user-attachments/assets/71babca3-8df5-4328-a87c-1efa4aedcaf5
+
 
 ## Screenshots
 

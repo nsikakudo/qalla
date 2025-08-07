@@ -9,8 +9,8 @@ class AppColors {
 
   // Neutral & Background Colors (Light Theme)
   static const Color whiteColor = Color(0xffffffff);
-  static const Color lightGrey = Color(0xFFF7F8F9); // General background
-  static const Color greyColor = Color(0xffEFF1F4); // Borders
+  static const Color lightGrey = Color(0xFFF7F8F9);
+  static const Color greyColor = Color(0xffEFF1F4);
   static const Color unselectedCategoryColorLight = Color(0xFFECEFF2);
   static const Color blueChalk = Color(0xFFE6F0FF);
   static const Color lightRed = Color(0xFFFFE5E5);
@@ -25,12 +25,12 @@ class AppColors {
   static const Color selectedHeaderColorLight = Color(0xff355587);
   static const Color unselectedHeaderColorLight = Color(0xffDAE0EA);
   static const Color marketTitleColorLight = Color(0xFF7387A6);
-  static const Color secondaryTextColorLight = Color(0xFF98A8C1); // darkGray
-  static const Color hintColorLight = Color(0xFFC9D1DE); // searchColor
+  static const Color secondaryTextColorLight = Color(0xFF98A8C1);
+  static const Color hintColorLight = Color(0xFFC9D1DE);
 }
 
-// --- Custom Theme Extension for App Colors ---
-// Use this extension to access colors in your widgets: Theme.of(context).extension<AppColorExtension>()!
+
+
 @immutable
 class AppColorExtension extends ThemeExtension<AppColorExtension> {
   const AppColorExtension({
@@ -54,7 +54,6 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     required this.iconColor,
   });
 
-  // Define your colors here
   final Color cardBackground;
   final Color cardBorder;
   final Color primaryText;
@@ -148,7 +147,6 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     );
   }
 
-  // --- Light Theme Colors ---
   static const light = AppColorExtension(
     cardBackground: AppColors.whiteColor,
     cardBorder: AppColors.greyColor,
@@ -170,7 +168,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     iconColor: AppColors.secondaryTextColorLight,
   );
 
-  // --- Dark Theme Colors ---
+
   static final dark = AppColorExtension(
     cardBackground: AppColors.darkCard,
     cardBorder: AppColors.darkBorder,
@@ -179,7 +177,7 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     hintText: Colors.white.withOpacity(0.5),
     selectedHeader: Colors.white,
     unselectedHeader: Colors.white.withOpacity(0.5),
-    selectedCategoryBackground: const Color(0xFF4C82F7), // Lighter blue for dark mode
+    selectedCategoryBackground: const Color(0xFF4C82F7),
     unselectedCategoryBackground: AppColors.unselectedCategoryColorDark,
     selectedCategoryText: Colors.white,
     unselectedCategoryText: Colors.white.withOpacity(0.9),
@@ -192,26 +190,3 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
     iconColor: Colors.white.withOpacity(0.6),
   );
 }
-
-
-
-
-// class AppColors {
-//   static const Color whiteColor = Color(0xffffffff);
-//   static const Color greyColor = Color(0xffEFF1F4);
-//   static const Color selectedHeaderColor = Color(0xff355587);
-//   static const Color unselectedHeaderColor = Color(0xffDAE0EA);
-//   static const Color darkBlueColor = Color(0xff032B69);
-//   static const Color lightBlueColor = Color(0xff0166F4);
-//   static const Color darkRedColor = Color(0xffFF4E4E);
-//   static const Color greenColor = Color(0xff17BD5E);
-//   static const Color primaryBlue = Color(0xFF0D56E3);
-//   static const Color lightGrey = Color(0xFFF7F8F9);
-//   static const Color darkGrey = Color(0xFFB3BFD2);
-//   static const Color darkGray = Color(0xFF98A8C1);
-//   static const Color lightRed = Color(0xFFFFE5E5);
-//   static const Color blueChalk = Color(0xFFE6F0FF);
-//   static const Color searchColor = Color(0xFFC9D1DE);
-//   static const Color marketTitleColor = Color(0xFF7387A6);
-//   static const Color unselectedCategoryColor = Color(0xFFECEFF2);
-// }

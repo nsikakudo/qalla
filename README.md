@@ -14,7 +14,11 @@ The application supports both light and dark themes, adapting automatically to t
 
 | Light Mode                                     | Dark Mode                                    |
 | ---------------------------------------------- | -------------------------------------------- |
-| ![Light Mode](screenshots/light_mode.jpg)      | ![Dark Mode](screenshots/dark_mode.jpg)      |
+| ![light_mode](https://github.com/user-attachments/assets/15f0f094-52b5-474c-b040-978ece856101)      | ![dark_mode](https://github.com/user-attachments/assets/56d56133-3d12-4dc7-b1e3-8505012458a3)      |
+
+
+
+
 
 ## Features
 

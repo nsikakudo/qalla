@@ -12,9 +12,9 @@ The project demonstrates a modern, scalable Flutter architecture, implementing k
 
 The application supports both light and dark themes, adapting automatically to the user's system settings.
 
-| Light Mode                                | Dark Mode                               |
-| ----------------------------------------- | --------------------------------------- |
-| ![Light Mode](./screenshots/light_mode) | ![Dark Mode](./screenshots/dark_mode) |
+| Light Mode                                     | Dark Mode                                    |
+| ---------------------------------------------- | -------------------------------------------- |
+| ![Light Mode](screenshots/light_mode.jpg)      | ![Dark Mode](screenshots/dark_mode.jpg)      |
 
 ## Features
 

@@ -19,6 +19,7 @@ class CategoryPills extends StatelessWidget {
     {'displayName': 'Technology', 'apiKey': 'TECHNOLOGY', 'icon': Icons.memory},
   ];
 
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -43,8 +44,7 @@ class CategoryPills extends StatelessWidget {
                 onTap: () {
                   if (!isSelected) {
                     context.read<EventBloc>().add(SearchEvents(
-                        keyword: state.currentKeyword, category: categoryApiKey)
-                    ); // Use apiKey for the API call
+                        keyword: state.currentKeyword, category: categoryApiKey));
                   }
                 },
               );
@@ -71,17 +71,18 @@ class _CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final backgroundColor = isSelected ? theme.primaryColor : AppColors.unselectedCategoryColor;
-    final contentColor = isSelected ? Colors.white : AppColors.selectedHeaderColor;
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
+    final backgroundColor = isSelected ? appColors.selectedCategoryBackground : appColors.unselectedCategoryBackground;
+    final contentColor = isSelected ? appColors.selectedCategoryText : appColors.unselectedCategoryText;
+
     final iconWidget = Icon(icon, size: 20, color: contentColor);
     final textWidget = Text(
       name,
       style: TextStyle(
-        fontWeight: FontWeight.w500,
-        color: contentColor,
-        fontFamily: customFontFamily,
-        fontSize: 12
+          fontWeight: FontWeight.w500,
+          color: contentColor,
+          fontFamily: customFontFamily,
+          fontSize: 12
       ),
     );
     const spacer = SizedBox(width: 8);
@@ -92,8 +93,8 @@ class _CategoryButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
         margin: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(5),
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

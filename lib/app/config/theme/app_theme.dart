@@ -8,13 +8,13 @@ class AppTheme {
     primaryColor: AppColors.primaryBlue,
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.whiteColor,
+    cardColor: AppColors.whiteColor,
+    dividerColor: AppColors.greyColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.whiteColor,
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.black),
-      titleTextStyle: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColors.whiteColor,
+        statusBarColor: Colors.transparent, // Make it transparent
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ),
@@ -22,22 +22,24 @@ class AppTheme {
     fontFamily: customFontFamily,
     colorScheme: const ColorScheme.light(
       primary: AppColors.primaryBlue,
-      secondary: AppColors.lightBlueColor,
-      background: AppColors.lightGrey,
+      surface: AppColors.lightGrey,
     ),
+    extensions: const <ThemeExtension<dynamic>>[
+      AppColorExtension.light,
+    ],
   );
 
   static final ThemeData darkTheme = ThemeData(
     primaryColor: const Color(0xFF4C82F7),
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: const Color(0xFF121212),
+    scaffoldBackgroundColor: AppColors.darkScaffold,
+    cardColor: AppColors.darkCard,
+    dividerColor: AppColors.darkBorder,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFF1F1F1F),
-      elevation: 1,
-      iconTheme: IconThemeData(color: Colors.white),
-      titleTextStyle: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+      backgroundColor: AppColors.darkScaffold,
+      elevation: 0,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF1F1F1F),
+        statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
       ),
@@ -45,47 +47,10 @@ class AppTheme {
     fontFamily: customFontFamily,
     colorScheme: const ColorScheme.dark(
       primary: Color(0xFF4C82F7),
-      secondary: Color(0xFF0166F4),
+      surface: AppColors.darkCard,
     ),
+    extensions: <ThemeExtension<dynamic>>[
+      AppColorExtension.dark,
+    ],
   );
 }
-
-
-
-
-// class AppTheme {
-//   static final ThemeData lightTheme = ThemeData(
-//     primaryColor: AppColors.primaryBlue,
-//     brightness: Brightness.light,
-//     scaffoldBackgroundColor: AppColors.lightGrey,
-//     appBarTheme: const AppBarTheme(
-//       backgroundColor: AppColors.whiteColor,
-//       elevation: 0,
-//       iconTheme: IconThemeData(color: Colors.black),
-//       titleTextStyle: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-//     ),
-//     fontFamily: customFontFamily,
-//     colorScheme: const ColorScheme.light(
-//       primary: AppColors.primaryBlue,
-//       secondary: AppColors.lightBlueColor,
-//       background: AppColors.lightGrey,
-//     ),
-//   );
-//
-//   static final ThemeData darkTheme = ThemeData(
-//     primaryColor: const Color(0xFF4C82F7),
-//     brightness: Brightness.dark,
-//     scaffoldBackgroundColor: const Color(0xFF121212),
-//     appBarTheme: const AppBarTheme(
-//       backgroundColor: Color(0xFF1F1F1F),
-//       elevation: 1,
-//       iconTheme: IconThemeData(color: Colors.white),
-//       titleTextStyle: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-//     ),
-//     fontFamily: customFontFamily,
-//     colorScheme: const ColorScheme.dark(
-//       primary: Color(0xFF4C82F7),
-//       secondary: Color(0xFF0166F4),
-//     ),
-//   );
-// }

@@ -15,13 +15,16 @@ class EventCardCombined extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final appColors = theme.extension<AppColorExtension>()!;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       padding: const EdgeInsets.all(padding18),
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(radius5),
-        border: Border.all(color: AppColors.greyColor, width: 1),
+        border: Border.all(color: theme.dividerColor, width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,16 +33,16 @@ class EventCardCombined extends StatelessWidget {
             CircleAvatar(
               backgroundImage: CachedNetworkImageProvider(event.image128Url),
               radius: 20,
-              backgroundColor: AppColors.lightGrey,
+              backgroundColor: theme.colorScheme.surface,
             ),
             const SizedBox(width: 8),
             Expanded(
               child: Text(
                 event.title,
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 14,
-                    color: AppColors.darkBlueColor),
+                    color: appColors.primaryText),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -56,8 +59,9 @@ class EventCardCombined extends StatelessWidget {
     );
   }
 
-
   Widget _buildMarketRow(BuildContext context, MarketEntity market) {
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: Row(
@@ -65,11 +69,11 @@ class EventCardCombined extends StatelessWidget {
         children: [
           Expanded(
               child: Text(market.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
                       fontFamily: customFontFamily,
-                      color: AppColors.marketTitleColor
+                      color: appColors.secondaryText
                   )
               )
           ),
@@ -85,15 +89,12 @@ class EventCardCombined extends StatelessWidget {
     );
   }
 
-
   Widget _buildMarketOptionButton(BuildContext context, String label, int price, {required bool isYes}) {
-    final color = isYes
-        ? AppColors.blueChalk.withAlpha((0.5 * 255).round())
-        : AppColors.lightRed.withAlpha((0.5 * 255).round());
-    final textColor = isYes ? AppColors.primaryBlue : AppColors.darkRedColor;
-    final borderColor = isYes
-        ? AppColors.primaryBlue.withAlpha((0.3 * 255).round())
-        : AppColors.darkRedColor.withAlpha((0.3 * 255).round());
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
+    final color = isYes ? appColors.yesButtonBackground : appColors.noButtonBackground;
+    final textColor = isYes ? appColors.yesButtonText : appColors.noButtonText;
+    final borderColor = (isYes ? appColors.yesButtonBorder : appColors.noButtonBorder).withAlpha((0.3 * 255).round());
+
 
     return GestureDetector(
       onTap: () {},
@@ -121,8 +122,8 @@ class EventCardCombined extends StatelessWidget {
     );
   }
 
-  Widget _buildFooter(
-      BuildContext context, double totalVolume, DateTime? endsAt) {
+  Widget _buildFooter(BuildContext context, double totalVolume, DateTime? endsAt) {
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
     final formatter = NumberFormat.compactCurrency(
       symbol: '₦',
       decimalDigits: 1,
@@ -136,27 +137,31 @@ class EventCardCombined extends StatelessWidget {
       children: [
         Row(
           children: [
-            SvgPicture.asset('assets/icons/ic_bold_barchart.svg'),
+            SvgPicture.asset(
+              'assets/icons/ic_bold_barchart.svg',
+              colorFilter: ColorFilter.mode(appColors.iconColor, BlendMode.srcIn),
+            ),
             const HorizontalSpacing(space: spacing5),
             Text(formatter.format(totalVolume),
-                style: const TextStyle(
-                    color: AppColors.darkGrey,
+                style: TextStyle(
+                    color: appColors.secondaryText,
                     fontSize: 12,
-                    fontWeight: FontWeight.w500
-                )
-            ),
+                    fontWeight: FontWeight.w500)),
           ],
         ),
         Row(
           children: [
             Text(endsAtFormatted,
-                style: const TextStyle(
-                    color: AppColors.darkGrey,
+                style: TextStyle(
+                    color: appColors.secondaryText,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                     fontFamily: customFontFamily)),
             const HorizontalSpacing(space: spacing5),
-            SvgPicture.asset('assets/icons/ic_favourite.svg'),
+            SvgPicture.asset(
+              'assets/icons/ic_favourite.svg',
+              colorFilter: ColorFilter.mode(appColors.iconColor, BlendMode.srcIn),
+            ),
           ],
         )
       ],

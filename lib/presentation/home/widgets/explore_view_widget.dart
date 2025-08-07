@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qalla/app/config/theme/spacing.dart';
 import 'package:qalla/presentation/home/widgets/search_field.dart';
-import '../../../app/config/theme/app_colors.dart';
 import '../../../app/config/theme/dimens.dart';
 import 'category_pills.dart';
 import 'event_list.dart';
@@ -11,17 +9,17 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.whiteColor,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: padding16),
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            VerticalSpacing(space: spacing20),
+            SizedBox(height: spacing18),
             SearchField(),
-            VerticalSpacing(space: spacing36),
+            SizedBox(height: spacing18),
             CategoryPills(),
-            VerticalSpacing(space: spacing18),
+            SizedBox(height: spacing24),
             Expanded(child: EventList()),
           ],
         ),

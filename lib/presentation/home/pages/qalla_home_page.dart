@@ -16,12 +16,14 @@ class QallaHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
+
     return BlocProvider(
       create: (_) => locator<EventBloc>()..add(FetchEvents()),
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          backgroundColor: AppColors.whiteColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           body: SafeArea(
             bottom: false,
             child: Column(
@@ -43,8 +45,8 @@ class QallaHomePage extends StatelessWidget {
                         splashFactory: NoSplash.splashFactory,
                         overlayColor: const WidgetStatePropertyAll(Colors.transparent),
                         labelPadding: const EdgeInsets.only(right: 18),
-                        unselectedLabelColor: AppColors.unselectedHeaderColor,
-                        labelColor: AppColors.selectedHeaderColor,
+                        unselectedLabelColor: appColors.unselectedHeader,
+                        labelColor: appColors.selectedHeader,
                         labelStyle: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
@@ -54,7 +56,6 @@ class QallaHomePage extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           fontFamily: customFontFamily,
-                          // color: AppColors.unselectedHeaderColor
                         ),
                         tabs: [
                           Tab(text: HomeStringConstants.exploreText),
@@ -67,23 +68,23 @@ class QallaHomePage extends StatelessWidget {
                 ),
                 Expanded(
                   child: TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      ExploreView(),
+                      const ExploreView(),
                       Center(
                           child: Text(HomeStringConstants.comingSoonText,
                             style: TextStyle(
-                              color: AppColors.darkGray,
-                              fontSize: 16,
-                              fontFamily: customFontFamily,
-                              fontWeight: FontWeight.w600
+                                color: appColors.secondaryText,
+                                fontSize: 16,
+                                fontFamily: customFontFamily,
+                                fontWeight: FontWeight.w600
                             ),
                           )
                       ),
                       Center(
                           child: Text(HomeStringConstants.comingSoonText,
                             style: TextStyle(
-                                color: AppColors.darkGray,
+                                color: appColors.secondaryText,
                                 fontSize: 16,
                                 fontFamily: customFontFamily,
                                 fontWeight: FontWeight.w600

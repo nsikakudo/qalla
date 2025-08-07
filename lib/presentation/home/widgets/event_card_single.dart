@@ -14,15 +14,17 @@ class EventCardSingle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final appColors = theme.extension<AppColorExtension>()!;
     final market = event.markets.first;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       padding: const EdgeInsets.all(padding18),
       decoration: BoxDecoration(
-          color: AppColors.whiteColor,
+          color: theme.cardColor,
           borderRadius: BorderRadius.circular(radius5),
-          border: Border.all(color: AppColors.greyColor, width: 1)),
+          border: Border.all(color: theme.dividerColor, width: 1)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,16 +32,16 @@ class EventCardSingle extends StatelessWidget {
             CircleAvatar(
               backgroundImage: CachedNetworkImageProvider(event.image128Url),
               radius: 20,
-              backgroundColor: AppColors.lightGrey,
+              backgroundColor: theme.colorScheme.surface,
             ),
             const HorizontalSpacing(space: spacing12),
             Expanded(
               child: Text(
                 event.title,
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 14,
-                    color: AppColors.darkBlueColor),
+                    color: appColors.primaryText),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -83,13 +85,11 @@ class EventCardSingle extends StatelessWidget {
     );
   }
 
-
   Widget _buildBuyButton(BuildContext context, String label, {required bool isYes}) {
-    final color = isYes ? AppColors.blueChalk : AppColors.lightRed;
-    final textColor = isYes ? AppColors.primaryBlue : AppColors.darkRedColor;
-    final borderColor = isYes
-        ? AppColors.primaryBlue.withAlpha((0.3 * 255).round())
-        : AppColors.darkRedColor.withAlpha((0.3 * 255).round());
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
+    final color = isYes ? appColors.yesButtonBackground : appColors.noButtonBackground;
+    final textColor = isYes ? appColors.yesButtonText : appColors.noButtonText;
+    final borderColor = (isYes ? appColors.yesButtonBorder : appColors.noButtonBorder).withAlpha((0.3 * 255).round());
 
     final parts = label.split(' - ');
     final prefix = parts[0];
@@ -127,8 +127,8 @@ class EventCardSingle extends StatelessWidget {
     );
   }
 
-
   Widget _buildFooter(BuildContext context, int trades, DateTime? endsAt) {
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
     String endsAtFormatted = HomeStringConstants.noEndDateText;
     if (endsAt != null) {
       endsAtFormatted = 'Ends ${DateFormat('d\'th\' MMM').format(endsAt)}';
@@ -139,11 +139,14 @@ class EventCardSingle extends StatelessWidget {
       children: [
         Row(
           children: [
-            SvgPicture.asset('assets/icons/ic_light_barchart.svg'),
+            SvgPicture.asset(
+              'assets/icons/ic_light_barchart.svg',
+              colorFilter: ColorFilter.mode(appColors.iconColor, BlendMode.srcIn),
+            ),
             const HorizontalSpacing(space: spacing5),
             Text('$trades Trades',
-                style: const TextStyle(
-                    color: AppColors.darkGrey,
+                style: TextStyle(
+                    color: appColors.secondaryText,
                     fontSize: 12,
                     fontWeight: FontWeight.w500)
             ),
@@ -152,13 +155,16 @@ class EventCardSingle extends StatelessWidget {
         Row(
           children: [
             Text(endsAtFormatted,
-                style: const TextStyle(
-                    color: AppColors.darkGrey,
+                style: TextStyle(
+                    color: appColors.secondaryText,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                     fontFamily: customFontFamily)),
             const HorizontalSpacing(space: spacing5),
-            SvgPicture.asset('assets/icons/ic_bookmark.svg')
+            SvgPicture.asset(
+              'assets/icons/ic_bookmark.svg',
+              colorFilter: ColorFilter.mode(appColors.iconColor, BlendMode.srcIn),
+            )
           ],
         )
       ],
@@ -166,12 +172,12 @@ class EventCardSingle extends StatelessWidget {
   }
 }
 
-
 class _ProfitText extends StatelessWidget {
   final double from;
   final double to;
 
   const _ProfitText({required this.from, required this.to});
+
 
   String _format(double amount) {
     if (amount == 0) return '₦0';
@@ -180,14 +186,16 @@ class _ProfitText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appColors = Theme.of(context).extension<AppColorExtension>()!;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           _format(from),
-          style: const TextStyle(
-            color: AppColors.darkGrey,
+          style: TextStyle(
+            color: appColors.secondaryText,
             fontSize: 12,
             fontWeight: FontWeight.w600,
             fontFamily: customFontFamily,
@@ -195,16 +203,18 @@ class _ProfitText extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 11.0),
-          child: SvgPicture.asset('assets/icons/ic_arrow_forward.svg'),
+          child: SvgPicture.asset(
+            'assets/icons/ic_arrow_forward.svg',
+            colorFilter: ColorFilter.mode(appColors.iconColor, BlendMode.srcIn),
+          ),
         ),
         Text(
           _format(to),
-          style: const TextStyle(
+          style: TextStyle(
               color: AppColors.greenColor,
               fontWeight: FontWeight.w600,
               fontSize: 12,
-              fontFamily: customFontFamily
-          ),
+              fontFamily: customFontFamily),
         ),
       ],
     );
